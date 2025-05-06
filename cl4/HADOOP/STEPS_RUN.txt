@@ -1,0 +1,23 @@
+upload files to hdfs
+
+hdfs dfs -mkdir -p /user/cloudera/wordcount/input
+hdfs dfs -put input.txt /user/cloudera/wordcount/input/
+
+make python files executables
+
+chmod +x mapper.py
+chmod +x reducer.py
+
+run hadoop streaming job
+
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
+  -input /user/cloudera/wordcount/input \
+  -output /user/cloudera/wordcount/output \
+  -mapper mapper.py \
+  -reducer reducer.py \
+  -file mapper.py \
+  -file reducer.py
+
+check output
+
+hdfs dfs -cat /user/cloudera/wordcount/output/part-00000

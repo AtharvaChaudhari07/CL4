@@ -1,0 +1,2 @@
+hadoop is great
+hadoop is fast
